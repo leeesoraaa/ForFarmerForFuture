@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Alazea - Gardening &amp; Landscaping HTML Template</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="static/img/core-img/favicon.ico">
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="static/css/style.css">
+
+     <!-- jQuery-2.2.4 js -->
+    <script src="static/js/jquery/jquery-2.2.4.min.js"></script>
+
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{ KAKAO_API_KEY }}"></script>
+
+    <style>
+        #map{
+        width:500px;
+        height:400px;
+        border: 2px solid;
+      }
+    </style>
+    <script>
+      $(document).ready(function(){
+          var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+          mapOption = {
+            center: new kakao.maps.LatLng(37.4816029, 126.8848298), // 지도의 중심좌표
+            level: 3 // 지도의 확대 레벨
+          };
+
+          // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+          var map = new kakao.maps.Map(mapContainer, mapOption);
+
+          // 마커가 표시될 위치
+          var markerPosition  = new kakao.maps.LatLng(37.4816029, 126.8848298);
+
+          // 마커 생성
+          var marker = new kakao.maps.Marker({
+              position: markerPosition
+          });
+
+          // 마커가 지도 위에 표시되도록 설정
+          marker.setMap(map);
+
+          // 인포윈도우 표시 위치
+          var iwContent = '<p>가산 스타밸리 209호</p>'
+
+          // 인포윈도우 생성
+          var infowindow = new kakao.maps.InfoWindow({
+              content : iwContent
+          });
+
+          // 마커 위에 인포윈도우 표시, 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시
+          // infowindow.open(map, marker);
+
+          // 지도 안에서 이벤트 처리 함수
+          kakao.maps.event.addListener(marker, 'mouseover', function() {
+                infowindow.open(map, marker);
+          });
+          kakao.maps.event.addListener(marker, 'mouseout', function() {
+                infowindow.close();
+          });
+          kakao.maps.event.addListener(marker, 'click', function() {
+                location.href = 'https://map.kakao.com/?map_type=TYPE_MAP&target=car&rt=,,474555,1106128&rt1=&rt2=%EC%8A%A4%ED%83%80%EB%B0%B8%EB%A6%AC&rtIds=,7961482';
+          });
+
+          function clickinfo(){
+              return function(){
+                  location.href = 'https://map.kakao.com/?map_type=TYPE_MAP&target=car&rt=,,474555,1106128&rt1=&rt2=%EC%8A%A4%ED%83%80%EB%B0%B8%EB%A6%AC&rtIds=,7961482'
+              }
+          }
+
+          function openinfo(map, marker, infowindow){
+              return function(){
+                  infowindow.open(map, marker)
+              }
+
+          }
+
+          function closeinfo(){
+              return function(){
+                  infowindow.close()
+              }
+          }
+      })
+    </script>
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-circle"></div>
+        <div class="preloader-img">
+            <img src="static/img/core-img/leaf.png" alt="">
+        </div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+
+        <!-- ***** Top Header Area ***** -->
+        <div class="top-header-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="top-header-content d-flex align-items-center justify-content-between">
+                            <!-- Top Header Content -->
+                            <div class="top-header-meta">
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="infodeercreative@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i> <span>Email: plantabc123@gmail.com</span></a>
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="+1 234 122 122"><i class="fa fa-phone" aria-hidden="true"></i> <span>Call: 02-1234-5678</span></a>
+                            </div>
+
+                            <!-- Top Header Content -->
+                            <div class="top-header-meta d-flex">
+                                {% if request.session.sessionid != None %}
+                                <!-- Mypage -->
+                                <div class="login">
+                                    <a href="{% url 'mypage' %}?id={{request.session.sessionid}}"><i class="fa fa-user-circle-o" aria-hidden="true"></i><span>Mypage</span></a>
+                                </div>
+                                <!-- Logout -->
+                                <div class="cart">
+                                    <a href="{% url 'logout' %}"><i class="fa fa-outdent" aria-hidden="true"></i><span>Logout</span></a>
+                                </div>
+                                {% else %}
+                                <!-- Login -->
+                                <div class="login">
+                                    <a href="{% url 'login' %}"><i class="fa fa-user-circle-o" aria-hidden="true"></i><span>Login</span></a>
+                                </div>
+                                <!-- Sign up -->
+                                <div class="cart">
+                                    <a href="{% url 'register' %}"><i class="fa fa-user-o" aria-hidden="true"></i><span>Sign up</span></a>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ***** Navbar Area ***** -->
+        <div class="alazea-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="alazeaNav">
+
+                        <!-- Nav Brand -->
+                        <a href="/" class="nav-brand"><img src="/static/img/core-img/f4-1.png" alt=""></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Navbar Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="/">Home</a></li>
+                                    <li><a href="{% url 'about' %}">About</a></li>
+                                    <li><a href="{% url 'category' %}">Category</a>
+                                        <ul class="dropdown">
+                                            <li><a href="{% url 'cabbage' %}">양배추</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'cabbage' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'cabbage' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'cabbage' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'tomato' %}">토마토</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'tomato' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'tomato' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'tomato' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'cucumber' %}">오이</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'cucumber' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'cucumber' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'cucumber' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'pumpkin' %}">호박</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'pumpkin' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'pumpkin' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'pumpkin' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'youngpumpkin' %}">애호박</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'youngpumpkin' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'youngpumpkin' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'youngpumpkin' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'kimchi' %}">배추</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'kimchi' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'kimchi' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'kimchi' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'pepper' %}">고추</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'pepper' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'kimchi' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'pepper' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'radish' %}">무</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'radish' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'radish' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'radish' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'greenonion' %}">파</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'greenonion' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'greenonion' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'greenonion' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'bean' %}">콩</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'bean' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'bean' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'bean' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                                    {% if request.session.sessionid != None %}
+                                    <li><a href="{% url 'mypage' %}?id={{request.session.sessionid}}">Mypage</a></li>
+                                    {% else %}
+                                    <li><a href="{% url 'login' %}">Login</a></li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                            <!-- Navbar End -->
+                        </div>
+                    </nav>
+
+                    <!-- Search Form -->
+                    <div class="search-form">
+                        <form action="#" method="get">
+                            <input type="search" name="search" id="search" placeholder="Type keywords &amp; press enter...">
+                            <button type="submit" class="d-none"></button>
+                        </form>
+                        <!-- Close Icon -->
+                        <div class="closeIcon"><i class="fa fa-times" aria-hidden="true"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### Breadcrumb Area Start ##### -->
+    <div class="breadcrumb-area">
+        <!-- Top Breadcrumb Area -->
+        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(static/img/core-img/main6.jpg);">
+            <h2>Contact US</h2>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Contact</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcrumb Area End ##### -->
+
+    <!-- ##### Contact Area Info Start ##### -->
+    <div class="contact-area-info section-padding-0-100">
+        <div class="container">
+            <div class="row align-items-center justify-content-between">
+                <!-- Contact Thumbnail -->
+                <div class="col-12 col-md-6">
+                    <div class="contact--thumbnail">
+                        <div class="cook">
+                            <div class="row">
+                                <div class="col-12 col-sm-4">
+                                    <img src="static/img/cate-img/youngjae.png" alt="">
+                                </div>
+                                <div class="col-12 col-sm-4">
+                                    <img src="static/img/cate-img/sora.png" alt="">
+                                </div>
+                                <div class="col-12 col-sm-4">
+                                    <img src="static/img/cate-img/dongmin.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-5">
+                    <!-- Section Heading -->
+                    <div class="section-heading">
+                        <h2>CONTACT US</h2>
+                        <p>We are improving our services to serve you better.</p>
+                    </div>
+                    <!-- Contact Information -->
+                    <div class="contact-information">
+                        <p><span>Address:</span> 서울 금천구 디지털로9길 99 스타밸리 209호</p>
+                        <p><span>Phone:</span> 02-1234-5678</p>
+                        <p><span>Email:</span> plantabc123@gmail.com</p>
+                        <p><span>Open hours:</span> Mon - Fri: 9 AM to 6 PM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Contact Area Info End ##### -->
+
+    <!-- ##### Contact Area Start ##### -->
+    <section class="contact-area">
+        <div class="container">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-12 col-lg-5">
+                    <!-- Section Heading -->
+                    <div class="section-heading">
+                        <h2>GET IN TOUCH</h2>
+                        <p>Send us a message, we will call back later</p>
+                    </div>
+                    <!-- Contact Form Area -->
+                    <div class="contact-form-area mb-100">
+                        {% if result == None %}
+                        <form action="mail" method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="contact-name" name="contact-name" placeholder="Your Name">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" id="contact-email" name="contact-email" placeholder="Your Email">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="contact-subject" name="contact-subject" placeholder="Subject">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <textarea class="form-control" name="message" id="message" cols="30" rows="10" name="message" placeholder="Message"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn alazea-btn mt-15">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                        {% elif result == 'success' %}
+                        <h5>메일이 성공적으로 전송되었습니다.</h5>
+                        {% elif result == 'fail' %}
+                        <h5>로그인 후 이용할 수 있습니다.</h5>
+                        <div class="col-12">
+                            <button class="btn alazea-btn mt-15"><a href="{% url 'login' %}">로그인 하러가기</a></button>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <!-- Kakao Maps -->
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Contact Area End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area bg-img" style="background-image: url(static/img/bg-img/3.jpg);">
+        <!-- Main Footer Area -->
+        <div class="main-footer-area">
+            <div class="container">
+                <div class="row">
+
+                    <!-- Single Footer Widget -->
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="single-footer-widget">
+                            <div class="widget-title">
+                                <h5>QUICK LINK</h5>
+                            </div>
+                            <nav class="widget-nav">
+                                <ul>
+                                    <li><a href="/">Home</a></li>
+                                    <li><a href="{% url 'about' %}">About</a></li>
+                                    <li><a href="{% url 'category' %}">Category</a></li>
+                                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <!-- Single Footer Widget -->
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="single-footer-widget">
+                            <div class="widget-title">
+                                <h5>CONTACT</h5>
+                            </div>
+
+                            <div class="contact-information">
+                                <p><span>Address:</span> 서울 금천구 디지털로9길 99 스타밸리 209호</p>
+                                <p><span>Phone:</span> 02-1234-5678</p>
+                                <p><span>Email:</span> plantabc123@gmail.com</p>
+                                <p><span>Open hours:</span> Mon - Fri: 9 AM to 6 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ##### Footer Area End ##### -->
+
+    <!-- ##### All Javascript Files ##### -->
+    <!-- Popper js -->
+    <script src="static/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="static/js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="static/js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="static/js/active.js"></script>
+</body>
+
+</html>

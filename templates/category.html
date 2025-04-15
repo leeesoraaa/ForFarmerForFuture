@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Alazea - Gardening &amp; Landscaping HTML Template</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="static/img/core-img/favicon.ico">
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="static/css/style.css">
+
+    <style>
+        body{
+            background-color: #F0E68C;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-circle"></div>
+        <div class="preloader-img">
+            <img src="static/img/core-img/leaf.png" alt="">
+        </div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+
+        <!-- ***** Top Header Area ***** -->
+        <div class="top-header-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="top-header-content d-flex align-items-center justify-content-between">
+                            <!-- Top Header Content -->
+                            <div class="top-header-meta">
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="infodeercreative@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i> <span>Email: plantabc123@gmail.com</span></a>
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="+1 234 122 122"><i class="fa fa-phone" aria-hidden="true"></i> <span>Call: 02-1234-5678</span></a>
+                            </div>
+
+                            <!-- Top Header Content -->
+                            <div class="top-header-meta d-flex">
+                                {% if request.session.sessionid != None %}
+                                <!-- Mypage -->
+                                <div class="login">
+                                    <a href="{% url 'mypage' %}?id={{request.session.sessionid}}"><i class="fa fa-user-circle-o" aria-hidden="true"></i><span>Mypage</span></a>
+                                </div>
+                                <!-- Logout -->
+                                <div class="cart">
+                                    <a href="{% url 'logout' %}"><i class="fa fa-outdent" aria-hidden="true"></i><span>Logout</span></a>
+                                </div>
+                                {% else %}
+                                <!-- Login -->
+                                <div class="login">
+                                    <a href="{% url 'login' %}"><i class="fa fa-user-circle-o" aria-hidden="true"></i><span>Login</span></a>
+                                </div>
+                                <!-- Sign up -->
+                                <div class="cart">
+                                    <a href="{% url 'register' %}"><i class="fa fa-user-o" aria-hidden="true"></i><span>Sign up</span></a>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ***** Navbar Area ***** -->
+        <div class="alazea-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="alazeaNav">
+
+                        <!-- Nav Brand -->
+                        <a href="/" class="nav-brand"><img src="/static/img/core-img/f4-1.png" alt=""></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Navbar Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="/">Home</a></li>
+                                    <li><a href="{% url 'about' %}">About</a></li>
+                                    <li><a href="{% url 'category' %}">Category</a>
+                                        <ul class="dropdown">
+                                            <li><a href="{% url 'cabbage' %}">양배추</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'cabbage' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'cabbage' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'cabbage' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'tomato' %}">토마토</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'tomato' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'tomato' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'tomato' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'cucumber' %}">오이</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'cucumber' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'cucumber' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'cucumber' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'pumpkin' %}">호박</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'pumpkin' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'pumpkin' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'pumpkin' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'youngpumpkin' %}">애호박</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'youngpumpkin' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'youngpumpkin' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'youngpumpkin' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'kimchi' %}">배추</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'kimchi' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'kimchi' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'kimchi' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'pepper' %}">고추</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'pepper' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'kimchi' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'pepper' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'radish' %}">무</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'radish' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'radish' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'radish' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'greenonion' %}">파</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'greenonion' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'greenonion' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'greenonion' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'bean' %}">콩</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'bean' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'bean' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'bean' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                                    {% if request.session.sessionid != None %}
+                                    <li><a href="{% url 'mypage' %}?id={{request.session.sessionid}}">Mypage</a></li>
+                                    {% else %}
+                                    <li><a href="{% url 'login' %}">Login</a></li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                            <!-- Navbar End -->
+                        </div>
+                    </nav>
+
+                    <!-- Search Form -->
+                    <div class="search-form">
+                        <form action="#" method="get">
+                            <input type="search" name="search" id="search" placeholder="Type keywords &amp; press enter...">
+                            <button type="submit" class="d-none"></button>
+                        </form>
+                        <!-- Close Icon -->
+                        <div class="closeIcon"><i class="fa fa-times" aria-hidden="true"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### Breadcrumb Area Start ##### -->
+    <div class="breadcrumb-area">
+        <!-- Top Breadcrumb Area -->
+        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(static/img/core-img/main5.jpg);">
+            <h2>Category</h2>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Category</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcrumb Area End ##### -->
+
+    <!-- ##### Portfolio Area Start ##### -->
+    <section class="alazea-portfolio-area portfolio-page section-padding-0-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Section Heading -->
+                    <div class="section-heading text-center">
+                        <h2>The kinds of crops</h2>
+                        <p>We devote all of our experience and efforts for creation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row alazea-portfolio">
+                <div class="category">
+                    <!-- Single Portfolio Area -->
+                    <div class="col-12 col-sm-6 col-lg-3 single_portfolio_item design home-design">
+                        <!-- Portfolio Thumbnail -->
+                        <div class="portfolio-thumbnail bg-img" style="background-image: url(static/img/cate-img/cabbage/cabbage.jpg);"></div>
+                        <!-- Portfolio Hover Text -->
+                        <div class="portfolio-hover-overlay">
+                            <a href="{% url 'cabbage' %}" class="d-flex align-items-center justify-content-center" title="cabbage">
+                                <div class="port-hover-text">
+                                    <h3>양배추</h3>
+                                    <h5>Cabbage</h5>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Single Portfolio Area -->
+                    <div class="col-12 col-sm-6 col-lg-6 single_portfolio_item garden">
+                        <!-- Portfolio Thumbnail -->
+                        <div class="portfolio-thumbnail bg-img" style="background-image: url(static/img/cate-img/tomato/tomato.jpg);"></div>
+                        <!-- Portfolio Hover Text -->
+                        <div class="portfolio-hover-overlay">
+                            <a href="{% url 'tomato' %}" class="d-flex align-items-center justify-content-center" title="Portfolio 2">
+                                <div class="port-hover-text">
+                                    <h3>토마토</h3>
+                                    <h5>Tomato</h5>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Single Portfolio Area -->
+                    <div class="col-12 col-sm-6 col-lg-3 single_portfolio_item garden office-design">
+                        <!-- Portfolio Thumbnail -->
+                        <div class="portfolio-thumbnail bg-img" style="background-image: url(static/img/cate-img/kimchi/baechoo.jpg);"></div>
+                        <!-- Portfolio Hover Text -->
+                        <div class="portfolio-hover-overlay">
+                            <a href="{% url 'kimchi' %}" class="d-flex align-items-center justify-content-center" title="Portfolio 4">
+                                <div class="port-hover-text">
+                                    <h3>배추</h3>
+                                    <h5>Napa Cabbage</h5>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Single Portfolio Area -->
+                    <div class="col-12 col-sm-6 col-lg-6 single_portfolio_item design office-design">
+                        <!-- Portfolio Thumbnail -->
+                        <div class="portfolio-thumbnail bg-img" style="background-image: url(static/img/cate-img/pumpkin/hobac.jpg);"></div>
+                        <!-- Portfolio Hover Text -->
+                        <div class="portfolio-hover-overlay">
+                            <a href="{% url 'pumpkin' %}" class="d-flex align-items-center justify-content-center" title="pumpkin">
+                                <div class="port-hover-text">
+                                    <h3>호박</h3>
+                                    <h5>Pumpkin</h5>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Single Portfolio Area -->
+                    <div class="col-12 col-sm-6 col-lg-6 single_portfolio_item garden">
+                        <!-- Portfolio Thumbnail -->
+                        <div class="portfolio-thumbnail bg-img" style="background-image: url(static/img/cate-img/youngpumpkin/ehobac.jpg);"></div>
+                        <!-- Portfolio Hover Text -->
+                        <div class="portfolio-hover-overlay">
+                            <a href="{% url 'youngpumpkin' %}" class="d-flex align-items-center justify-content-center" title="Portfolio 6">
+                                <div class="port-hover-text">
+                                    <h3>애호박</h3>
+                                    <h5>Squash</h5>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Single Portfolio Area -->
+                    <div class="col-12 col-sm-6 col-lg-6 single_portfolio_item design home-design">
+                        <!-- Portfolio Thumbnail -->
+                        <div class="portfolio-thumbnail bg-img" style="background-image: url(static/img/cate-img/radish/moo.jpg);"></div>
+                        <!-- Portfolio Hover Text -->
+                        <div class="portfolio-hover-overlay">
+                            <a href="{% url 'radish' %}" class="d-flex align-items-center justify-content-center" title="Portfolio 1">
+                                <div class="port-hover-text">
+                                    <h3>무</h3>
+                                    <h5>Radish</h5>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Single Portfolio Area -->
+                    <div class="col-12 col-sm-6 col-lg-3 single_portfolio_item garden">
+                        <!-- Portfolio Thumbnail -->
+                        <div class="portfolio-thumbnail bg-img" style="background-image: url(static/img/cate-img/pepper/gochoo.jpg);"></div>
+                        <!-- Portfolio Hover Text -->
+                        <div class="portfolio-hover-overlay">
+                            <a href="{% url 'pepper' %}" class="d-flex align-items-center justify-content-center" title="Portfolio 2">
+                                <div class="port-hover-text">
+                                    <h3>고추</h3>
+                                    <h5>Pepper</h5>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Single Portfolio Area -->
+                    <div class="col-12 col-sm-6 col-lg-3 single_portfolio_item garden office-design">
+                        <!-- Portfolio Thumbnail -->
+                        <div class="portfolio-thumbnail bg-img" style="background-image: url(static/img/cate-img/greenonion/pa.jpg);"></div>
+                        <!-- Portfolio Hover Text -->
+                        <div class="portfolio-hover-overlay">
+                            <a href="{% url 'greenonion' %}" class="d-flex align-items-center justify-content-center" title="Portfolio 4">
+                                <div class="port-hover-text">
+                                    <h3>파</h3>
+                                    <h5>Green Onion</h5>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Single Portfolio Area -->
+                    <div class="col-12 col-sm-6 col-lg-6 single_portfolio_item design office-design">
+                        <!-- Portfolio Thumbnail -->
+                        <div class="portfolio-thumbnail bg-img" style="background-image: url(static/img/cate-img/bean/kong.jpg);"></div>
+                        <!-- Portfolio Hover Text -->
+                        <div class="portfolio-hover-overlay">
+                            <a href="{% url 'bean' %}" class="d-flex align-items-center justify-content-center" title="Portfolio 5">
+                                <div class="port-hover-text">
+                                    <h3>콩</h3>
+                                    <h5>Bean</h5>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Single Portfolio Area -->
+                    <div class="col-12 col-sm-6 col-lg-6 single_portfolio_item home-design">
+                        <!-- Portfolio Thumbnail -->
+                        <div class="portfolio-thumbnail bg-img" style="background-image: url(static/img/cate-img/cucumber/cucumber.jpg);"></div>
+                        <!-- Portfolio Hover Text -->
+                        <div class="portfolio-hover-overlay">
+                            <a href="{% url 'cucumber' %}" class="d-flex align-items-center justify-content-center" title="Portfolio 7">
+                                <div class="port-hover-text">
+                                    <h3>오이</h3>
+                                    <h5>Cucumber</h5>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Portfolio Area End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area bg-img" style="background-image: url(static/img/bg-img/3.jpg);">
+        <!-- Main Footer Area -->
+        <div class="main-footer-area">
+            <div class="container">
+                <div class="row">
+
+                    <!-- Single Footer Widget -->
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="single-footer-widget">
+                            <div class="widget-title">
+                                <h5>QUICK LINK</h5>
+                            </div>
+                            <nav class="widget-nav">
+                                <ul>
+                                    <li><a href="/">Home</a></li>
+                                    <li><a href="{% url 'about' %}">About</a></li>
+                                    <li><a href="{% url 'category' %}">Category</a></li>
+                                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <!-- Single Footer Widget -->
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="single-footer-widget">
+                            <div class="widget-title">
+                                <h5>CONTACT</h5>
+                            </div>
+
+                            <div class="contact-information">
+                                <p><span>Address:</span> 서울 금천구 디지털로9길 99 스타밸리 209호</p>
+                                <p><span>Phone:</span> 02-1234-5678</p>
+                                <p><span>Email:</span> plantabc123@gmail.com</p>
+                                <p><span>Open hours:</span> Mon - Fri: 9 AM to 6 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ##### Footer Area End ##### -->
+
+    <!-- ##### All Javascript Files ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="static/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="static/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="static/js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="static/js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="static/js/active.js"></script>
+</body>
+
+</html>

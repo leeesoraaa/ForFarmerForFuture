@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Alazea - Gardening &amp; Landscaping HTML Template</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="static/img/core-img/favicon.ico">
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="static/css/style.css">
+
+    <style>
+        .cook img{
+            width:100%;
+            height:400px;
+            overflow:hidden;
+        }
+        .temp {
+            width:100%;
+        }
+        .temp th, td{
+            width:16.6%;
+        }
+        .date {
+            width:100%;
+        }
+        .date td{
+            height:50px;
+            font-size:16px;
+
+        }
+        .ex-img {
+            border: none;
+            width:800px;
+            height: 300px;
+        }
+        .ex-img td{
+            padding: 0px
+            width: 33.33%;
+        }
+        .ex-img img{
+            width:100%
+        }
+        .check_btn {
+          color: #198754;
+          border-color: #198754;
+          font-size:18px;
+          text-decoration:none;
+          border-radius: 5px;
+          padding: 10px 20px;
+          cursor: pointer;
+        }
+        .check_btn:hover{
+          color: #fff;
+          border-color: #198754;
+          background-color: #198754;
+        }
+
+    </style>
+    <script>
+      function previewImage(event) {
+        var input = event.target;
+        var preview = document.getElementById('preview');
+
+        var reader = new FileReader();
+
+        reader.onload = function () {
+          preview.src = reader.result;
+        };
+
+        reader.readAsDataURL(input.files[0]);
+      }
+    </script>
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-circle"></div>
+        <div class="preloader-img">
+            <img src="static/img/core-img/leaf.png" alt="">
+        </div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+
+        <!-- ***** Top Header Area ***** -->
+        <div class="top-header-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="top-header-content d-flex align-items-center justify-content-between">
+                            <!-- Top Header Content -->
+                            <div class="top-header-meta">
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="infodeercreative@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i> <span>Email: plantabc123@gmail.com</span></a>
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="+1 234 122 122"><i class="fa fa-phone" aria-hidden="true"></i> <span>Call: 02-1234-5678</span></a>
+                            </div>
+
+                            <!-- Top Header Content -->
+                            <div class="top-header-meta d-flex">
+                                {% if request.session.sessionid != None %}
+                                <!-- Mypage -->
+                                <div class="login">
+                                    <a href="{% url 'mypage' %}?id={{request.session.sessionid}}"><i class="fa fa-user-circle-o" aria-hidden="true"></i><span>Mypage</span></a>
+                                </div>
+                                <!-- Logout -->
+                                <div class="cart">
+                                    <a href="{% url 'logout' %}"><i class="fa fa-outdent" aria-hidden="true"></i><span>Logout</span></a>
+                                </div>
+                                {% else %}
+                                <!-- Login -->
+                                <div class="login">
+                                    <a href="{% url 'login' %}"><i class="fa fa-user-circle-o" aria-hidden="true"></i><span>Login</span></a>
+                                </div>
+                                <!-- Sign up -->
+                                <div class="cart">
+                                    <a href="{% url 'register' %}"><i class="fa fa-user-o" aria-hidden="true"></i><span>Sign up</span></a>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ***** Navbar Area ***** -->
+        <div class="alazea-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="alazeaNav">
+
+                        <!-- Nav Brand -->
+                        <a href="/" class="nav-brand"><img src="/static/img/core-img/logo.png" alt=""></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Navbar Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="/">Home</a></li>
+                                    <li><a href="{% url 'about' %}">About</a></li>
+                                    <li><a href="{% url 'category' %}">Category</a>
+                                        <ul class="dropdown">
+                                            <li><a href="{% url 'cabbage' %}">양배추</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'cabbage' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'cabbage' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'cabbage' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'tomato' %}">토마토</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'tomato' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'tomato' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'tomato' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'cucumber' %}">오이</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'cucumber' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'cucumber' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'cucumber' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'pumpkin' %}">호박</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'pumpkin' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'pumpkin' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'pumpkin' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'youngpumpkin' %}">애호박</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'youngpumpkin' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'youngpumpkin' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'youngpumpkin' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'kimchi' %}">배추</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'kimchi' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'kimchi' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'kimchi' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'pepper' %}">고추</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'pepper' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'kimchi' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'pepper' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'radish' %}">무</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'radish' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'radish' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'radish' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'greenonion' %}">파</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'greenonion' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'greenonion' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'greenonion' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'bean' %}">콩</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'bean' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'bean' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'bean' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                                    {% if request.session.sessionid != None %}
+                                    <li><a href="{% url 'mypage' %}?id={{request.session.sessionid}}">Mypage</a></li>
+                                    {% else %}
+                                    <li><a href="{% url 'login' %}">Login</a></li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                            <!-- Navbar End -->
+                        </div>
+                    </nav>
+
+                    <!-- Search Form -->
+                    <div class="search-form">
+                        <form action="#" method="get">
+                            <input type="search" name="search" id="search" placeholder="Type keywords &amp; press enter...">
+                            <button type="submit" class="d-none"></button>
+                        </form>
+                        <!-- Close Icon -->
+                        <div class="closeIcon"><i class="fa fa-times" aria-hidden="true"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### Breadcrumb Area Start ##### -->
+    <div class="breadcrumb-area">
+        <!-- Top Breadcrumb Area -->
+        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(static/img/cate-img/cabbage/main.jpg);">
+            <h2>Cabbage</h2>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Cabbage</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcrumb Area End ##### -->
+
+    <!-- ##### 양배추 활용 / 효능 start ##### -->
+    <section id="efficacy" class="about-us-area">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-12">
+                    <!-- Section Heading -->
+                    <div class="section-heading">
+                        <h2>양배추</h2>
+                        <p>Cabbage</p>
+                        <p>양배추는 샐러드, 쌈 채소, 볶음요리 등에 널리 쓰이고 있으며 특히 위장 건강에 탁월하다.</p>
+                    </div>
+
+                    <!-- Cabbage Efficacy -->
+                    <h4>효능</h4>
+                    <div class="alazea-benefits-area">
+                        <div class="row">
+                            <!-- Single Benefits Area -->
+                            <div class="col-12 col-sm-3">
+                                <div class="single-benefits-area">
+                                    <img src="static/img/cate-img/cabbage/stomach.png" alt="">
+                                    <h5>위장 건강</h5>
+                                    <p>풍부한 비타민U와 비타민K로 위 점막이 튼튼해지고 위 질환 치료에 효과적</p>
+                                </div>
+                            </div>
+
+                            <!-- Single Benefits Area -->
+                            <div class="col-12 col-sm-3">
+                                <div class="single-benefits-area">
+                                    <img src="static/img/core-img/b2.png" alt="">
+                                    <h5>항암 효능</h5>
+                                    <p>양배추에 함유된 글루코시놀레이트와 베타카로틴성분은 폐암,위암, 대장암 등 각종 암의 발병률을 낮춰줌</p>
+                                </div>
+                            </div>
+
+                            <!-- Single Benefits Area -->
+                            <div class="col-12 col-sm-3">
+                                <div class="single-benefits-area">
+                                    <img src="static/img/core-img/b3.png" alt="">
+                                    <h5>염증 개선</h5>
+                                    <p>위염, 편도염, 식도염 등 각종 염증성 질환 예방에 탁월한 설포라판 함유</p>
+                                </div>
+                            </div>
+
+                            <!-- Single Benefits Area -->
+                            <div class="col-12 col-sm-3">
+                                <div class="single-benefits-area">
+                                    <img src="static/img/cate-img/cabbage/bones.png" alt="">
+                                    <h5>뼈 건강 증진</h5>
+                                    <p>칼슘 뿐만 아니라 뼈에서 칼슘이 빠져나가는 것을 막아주는 비타민K가 풍부해 뼈 건강 유지 및 골다공증 예방에 효과적</p>
+                                </div>
+                            </div>
+                            <!-- Single Benefits Area -->
+                            <div class="col-12 col-sm-3">
+                                <div class="single-benefits-area">
+                                    <img src="static/img/cate-img/cabbage/brain1.png" alt="">
+                                    <h5>빈혈 증상 개선</h5>
+                                    <p>철분과 철분이 효과적으로 흡수될 수 있도록 도와주는 비타민C가 풍부하기 때문에 빈혈 예방 및 빈혈 증상 개선에 효과적</p>
+                                </div>
+                            </div>
+
+                            <!-- Single Benefits Area -->
+                            <div class="col-12 col-sm-3">
+                                <div class="single-benefits-area">
+                                    <img src="static/img/cate-img/cabbage/skin.png" alt="">
+                                    <h5>피부 미용</h5>
+                                    <p>비타민C가 풍부해 멜라닌 색소의 침착으로 인한 기미 및 주근깨를 예방하고 찬 성질을 지닌 양배추는 피부의 열을 식혀 여드름 완화에도 효과적</p>
+                                </div>
+                            </div>
+
+                            <!-- Single Benefits Area -->
+                            <div class="col-12 col-sm-3">
+                                <div class="single-benefits-area">
+                                    <img src="static/img/cate-img/cabbage/weight-loss.png" alt="">
+                                    <h5>다이어트 및 변비 개선</h5>
+                                    <p>칼로리가 낮고 식이섬유가 풍부하여 조금만 먹어도 포만감이 생겨 다이어트에 도움이 되며 장의 연동운동을 도와 변비 증상을 개선함</p>
+                                </div>
+                            </div>
+
+                            <!-- Single Benefits Area -->
+                            <div class="col-12 col-sm-3">
+                                <div class="single-benefits-area">
+                                    <img src="static/img/cate-img/cabbage/blood-drop.png" alt="">
+                                    <h5>혈액순환 개선</h5>
+                                    <p>양배추를 꾸준히 섭취하면 혈액이 맑아질 뿐만 아니라 양배추에 함유된 풍부한 칼륨이 나트륨을 배출하여 혈압을 낮춰 혈액순환을 활발하게 도와줌</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cabbage Cook -->
+                    <br>
+                    <h4>활용</h4>
+                    <div class="cook">
+                        <div class="row">
+                            <div class="col-12 col-sm-4">
+                                <p><b>샐러드</b></p>
+                                <img src="static/img/cate-img/cabbage/cabbage_salad2.jpg">
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <p><b>쌈밥</b></p>
+                                <img src="static/img/cate-img/cabbage/cabbage_ssambab.jpg">
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <p><b>토스트</b></p>
+                                <img src="static/img/cate-img/cabbage/cabbage_toast.jpg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="border-line"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### 양배추 활용 / 효능 End ##### -->
+
+    <!-- ##### 양배추 재배방법 Start ##### -->
+    <section id="cultivation" class="our-services-area bg-gray section-padding-100-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-5">
+                    <!-- Section Heading -->
+                    <div class="section-heading text-left">
+                        <h2>재배 방법</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row align-items-center justify-content-between">
+                <div class="col-12 col-lg-5">
+                    <div class="alazea-service-area mb-100">
+                        <!-- 재배 환경 -->
+                        <div class="cutivaion-env">
+                            <br>
+                            <h4>환경</h4>
+                            <br>
+                            <h6><b>생육 온도</b></h6>
+                            <table title="temp" class="temp">
+                                <thead>
+                                    <tr>
+                                        <th>발아</th><th>육묘</th><th>개화</th><th>생육</th><th>결구</th><th>저장</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>25°C</td><td>20~22°C</td><td>12°C</td><td>15~20°C</td><td>15~16°C</td><td>0~3°C</td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                            <br>
+                            <h6><b>재배 적지</b></h6>
+                            <p>토양산도는 pH 5.5 ~6.8 정도가 알맞고, 산성토양에서는 병해 발생 증가</p>
+                        </div>
+                        <!-- 재배 관리 -->
+                        <div class="cultivation-manage">
+                            <br>
+                            <h4>관리</h4>
+                            <!-- 거름 주기 -->
+                            <div class="single-service-area d-flex align-items-center">
+                                <!-- Icon -->
+                                <div class="service-icon mr-30">
+                                    <img src="static/img/core-img/s1.png" alt="">
+                                </div>
+                                <!-- Content -->
+                                <div class="service-content">
+                                    <h5>거름주기</h5>
+                                    <p>양배추는 생육기간이 길고 외엽이 충분히 생장해야 결구가 충실해지므로 비료를 충분히 사용해야 한다. 비료의 흡수는 지온의 영향을 받으므로 재배시기에 따라 흡수 능력에 차이가 있지만 결구초기부터 30~40일동안은 덧거름을 주어 생육을 촉진시킨다.</p>
+                                </div>
+                            </div>
+                            <!-- 물 주기 -->
+                            <div class="single-service-area d-flex align-items-center">
+                                <!-- Icon -->
+                                <div class="service-icon mr-30">
+                                    <img src="static/img/core-img/s2.png" alt="">
+                                </div>
+                                <!-- Content -->
+                                <div class="service-content">
+                                    <h5>물주기</h5>
+                                    <p>결구기에 수분이 부족하면 결구가 잘 안되고 품질이 나빠지므로 관수를 게을리 하지 말아야하며 지온의 급격한 변화를 피하기 위해 아침이나 저녁에 물을 주는 것이 좋다.</p>
+                                </div>
+                            </div>
+
+                            <!-- 수확시기 -->
+                            <div class="single-service-area d-flex align-items-center">
+                                <!-- Icon -->
+                                <div class="service-icon mr-30">
+                                    <img src="static/img/core-img/s3.png" alt="">
+                                </div>
+                                <!-- Content -->
+                                <div class="service-content">
+                                    <h5>수확시기</h5>
+                                    <p>대부분의 양배추는 모종을 이식한 날로부터 70일 이내에 수확할 수 있다. 손바닥으로 위에서 눌러보아서 단단하면 결구가 된 것이므로 수확하면 되고, 결구가 되기 전에 잎을 수확하려면, 한 번에 바깥쪽 잎을 2~3장 떼어서 수확한다.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="alazea-service-area mb-100">
+                        <!-- 재배 특성 -->
+                        <div class="cultivation-char">
+                            <h4>특성</h4>
+                            <p>양배추는 원래 서늘한 기후를 좋아하고 고온이 되면 병해에 시달리게 되며, 또 저온기에는 생육불량이 이어지면서 품질이 떨어지게 된다. 또한 토심이 깊고 배수가 양호한 사질양토 내지 점질양토에서 생육이 가장 좋다</p>
+                        </div>
+                        <!-- 재배 작형 -->
+                        <br>
+                        <div class="cultivation-date">
+                            <h4>시기</h4>
+                            <p>과거에는 주로 봄 재배와 가을 재배 작형을 중심으로 재배되었으나 최근에는 육종 기술의 발달로 재배가 쉬워지고 작형이 다양하게 분화, 발달되었다.</p>
+                            <table class="date">
+                                <thead>
+                                    <tr>
+                                        <th>작형</th><th>파종기</th><th>정식기</th><th>수확기</th><th>재배지역</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><b>봄 재배</b></td><td>3~4월</td><td>4~5월</td><td>7~8월</td><td>전국</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>가을 재배</b></td><td>7월</td><td>8월</td><td>10~11월</td><td>전국</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>월동 재배</b></td><td>9월</td><td>10월</td><td>3~5월</td><td>제주 및 남해안</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>여름 재배</b></td><td>5~6월</td><td>6~7월</td><td>9월</td><td>고랭지</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- 비디오 -->
+                        <br>
+                        <br>
+                        <div class="alazea-video-area bg-overlay mb-100">
+                            <img src="static/img/cate-img/cabbage/cabbage_video.jpg" alt="">
+                            <a href="https://www.youtube.com/watch?v=wk6cDBJ1Q2g" class="video-icon">
+                                <i class="fa fa-play" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### 양배추 재배방법 End ##### -->
+
+    <!-- ##### 양배추 진단하기 Start ##### -->
+    <section id="diagnosis" class="testimonial-area section-padding-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Section Heading -->
+                    <div class="section-heading">
+                        <img src="static/img/core-img/b2.png" alt="">
+                        <br>
+                        <br>
+                        <h5>진단할 작물의 사진을 업로드해주세요.</h5>
+                        <div class="text-black fs-0.5px">예시:</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row alazea-portfolio">
+                <div class="category">
+                    <!-- 샘플 사진 -->
+                    <div class="col-12 col-sm-6 col-lg-4 single_portfolio_item garden">
+                        <!-- Portfolio Thumbnail -->
+                        <div class="portfolio-thumbnail bg-img" style="background-image: url(static/ex-img/cabbage_ex1.jpg);"></div>
+                        <!-- Portfolio Hover Text -->
+                        <div class="portfolio-hover-overlay height-200px">
+                            <a href="{% url 'cabbage/analysis' %}?example=ex1" class="d-flex align-items-center justify-content-center" title="Portfolio 2">
+                                <div class="port-hover-text">
+                                    <h3>샘플 결과 보기</h3>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-4 single_portfolio_item garden">
+                        <!-- Portfolio Thumbnail -->
+                        <div class="portfolio-thumbnail bg-img" style="background-image: url(static/ex-img/cabbage_ex2.jpg);"></div>
+                        <!-- Portfolio Hover Text -->
+                        <div class="portfolio-hover-overlay">
+                            <a href="{% url 'cabbage/analysis' %}?example=ex2" class="d-flex align-items-center justify-content-center" title="Portfolio 2">
+                                <div class="port-hover-text">
+                                    <h3>샘플 결과 보기</h3>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-4 single_portfolio_item garden">
+                        <!-- Portfolio Thumbnail -->
+                        <div class="portfolio-thumbnail bg-img" style="background-image: url(static/ex-img/cabbage_ex3.jpg);"></div>
+                        <!-- Portfolio Hover Text -->
+                        <div class="portfolio-hover-overlay">
+                            <a href="{% url 'cabbage/analysis' %}?example=ex3" class="d-flex align-items-center justify-content-center" title="Portfolio 2">
+                                <div class="port-hover-text">
+                                    <h3>샘플 결과 보기</h3>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <br>
+                    <form action="cabbage/analysis" method="post" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <div class="form-group">
+                        <label for="img"></label>
+                        <input type="file" class="form-control" id="img" name="img" onchange="previewImage(event)">
+                        <br>
+                        <img id="preview" src="#" style="max-width: 400px; max-height: 400px;">
+                      </div>
+                      <button type="submit" class="check_btn">진단하기</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### 양배추 진단하기 End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area bg-img" style="background-image: url(static/img/bg-img/3.jpg);">
+        <!-- Main Footer Area -->
+        <div class="main-footer-area">
+            <div class="container">
+                <div class="row">
+
+                    <!-- Single Footer Widget -->
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="single-footer-widget">
+                            <div class="widget-title">
+                                <h5>QUICK LINK</h5>
+                            </div>
+                            <nav class="widget-nav">
+                                <ul>
+                                    <li><a href="/">Home</a></li>
+                                    <li><a href="{% url 'about' %}">About</a></li>
+                                    <li><a href="{% url 'category' %}">Category</a></li>
+                                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <!-- Single Footer Widget -->
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="single-footer-widget">
+                            <div class="widget-title">
+                                <h5>CONTACT</h5>
+                            </div>
+
+                            <div class="contact-information">
+                                <p><span>Address:</span> 서울 금천구 디지털로9길 99 스타밸리 209호</p>
+                                <p><span>Phone:</span> 02-1234-5678</p>
+                                <p><span>Email:</span> plantabc123@gmail.com</p>
+                                <p><span>Open hours:</span> Mon - Fri: 9 AM to 6 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ##### Footer Area End ##### -->
+
+    <!-- ##### All Javascript Files ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="static/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="static/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="static/js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="static/js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="static/js/active.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Alazea - Gardening &amp; Landscaping HTML Template</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="static/img/core-img/favicon.ico">
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="static/css/style.css">
+
+    <style>
+        .testimonial-author-info a{
+            color:#2F9D27;
+            text-decoration:underline;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-circle"></div>
+        <div class="preloader-img">
+            <img src="static/img/core-img/leaf.png" alt="">
+        </div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+
+        <!-- ***** Top Header Area ***** -->
+        <div class="top-header-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="top-header-content d-flex align-items-center justify-content-between">
+                            <!-- Top Header Content -->
+                            <div class="top-header-meta">
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="infodeercreative@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i> <span>Email: plantabc123@gmail.com</span></a>
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="+1 234 122 122"><i class="fa fa-phone" aria-hidden="true"></i> <span>Call: 02-1234-5678</span></a>
+                            </div>
+
+                            <!-- Top Header Content -->
+                            <div class="top-header-meta d-flex">
+                                {% if request.session.sessionid != None %}
+                                <!-- Mypage -->
+                                <div class="login">
+                                    <a href="{% url 'mypage' %}?id={{request.session.sessionid}}"><i class="fa fa-user-circle-o" aria-hidden="true"></i><span>Mypage</span></a>
+                                </div>
+                                <!-- Logout -->
+                                <div class="cart">
+                                    <a href="{% url 'logout' %}"><i class="fa fa-outdent" aria-hidden="true"></i><span>Logout</span></a>
+                                </div>
+                                {% else %}
+                                <!-- Login -->
+                                <div class="login">
+                                    <a href="{% url 'login' %}"><i class="fa fa-user-circle-o" aria-hidden="true"></i><span>Login</span></a>
+                                </div>
+                                <!-- Sign up -->
+                                <div class="cart">
+                                    <a href="{% url 'register' %}"><i class="fa fa-user-o" aria-hidden="true"></i><span>Sign up</span></a>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ***** Navbar Area ***** -->
+        <div class="alazea-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="alazeaNav">
+
+                        <!-- Nav Brand -->
+                        <a href="/" class="nav-brand"><img src="/static/img/core-img/f4-1.png" alt=""></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Navbar Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="/">Home</a></li>
+                                    <li><a href="{% url 'about' %}">About</a></li>
+                                    <li><a href="{% url 'category' %}">Category</a>
+                                        <ul class="dropdown">
+                                            <li><a href="{% url 'cabbage' %}">양배추</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'cabbage' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'cabbage' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'cabbage' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'tomato' %}">토마토</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'tomato' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'tomato' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'tomato' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'cucumber' %}">오이</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'cucumber' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'cucumber' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'cucumber' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'pumpkin' %}">호박</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'pumpkin' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'pumpkin' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'pumpkin' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'youngpumpkin' %}">애호박</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'youngpumpkin' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'youngpumpkin' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'youngpumpkin' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'kimchi' %}">배추</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'kimchi' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'kimchi' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'kimchi' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'pepper' %}">고추</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'pepper' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'kimchi' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'pepper' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'radish' %}">무</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'radish' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'radish' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'radish' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'greenonion' %}">파</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'greenonion' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'greenonion' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'greenonion' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'bean' %}">콩</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'bean' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'bean' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'bean' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                                    {% if request.session.sessionid != None %}
+                                    <li><a href="{% url 'mypage' %}?id={{request.session.sessionid}}">Mypage</a></li>
+                                    {% else %}
+                                    <li><a href="{% url 'login' %}">Login</a></li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                            <!-- Navbar End -->
+                        </div>
+                    </nav>
+
+                    <!-- Search Form -->
+                    <div class="search-form">
+                        <form action="#" method="get">
+                            <input type="search" name="search" id="search" placeholder="Type keywords &amp; press enter...">
+                            <button type="submit" class="d-none"></button>
+                        </form>
+                        <!-- Close Icon -->
+                        <div class="closeIcon"><i class="fa fa-times" aria-hidden="true"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### Breadcrumb Area Start ##### -->
+    <div class="breadcrumb-area">
+        <!-- Top Breadcrumb Area -->
+        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(static/img/core-img/about_main.jpg);">
+            <h2>ABOUT US</h2>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">About</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcrumb Area End ##### -->
+
+    <!-- ##### About Area Start ##### -->
+    <section class="about-us-area">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-12 col-lg-5">
+                    <!-- Section Heading -->
+                    <div class="section-heading">
+                        <h2>ABOUT US</h2>
+                        <p>We are leading in the farming service fields.</p>
+                    </div>
+                    <img src="static/img/core-img/about_graph.jpg">
+                    <p>현대 농업은 고령화로 인한 농업 인력 부족으로 소멸 위기에 놓여있습니다.
+                        우리는 지속 가능하고 지능적인 농업을 통해 더 나은 미래를 창조하고자 하는 비전에서 출발했습니다. 고객, 농업인, 그리고 지구 환경에 긍정적인 영향을 끼치는 것이 우리의 최종 목표입니다.</p>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="alazea-benefits-area">
+                        <div class="row">
+                            <!-- Single Benefits Area -->
+                            <div class="col-12 col-sm-6">
+                                <div class="single-benefits-area">
+                                    <img src="static/img/core-img/b1.png" alt="">
+                                    <h5>농업 지식 공유</h5>
+                                    <p> 농업 지식을 널리 공유하여, 누구나 손쉽게 농업에 참여하고 농작물을 키울 수 있도록 돕습니다.</p>
+                                </div>
+                            </div>
+
+                            <!-- Single Benefits Area -->
+                            <div class="col-12 col-sm-6">
+                                <div class="single-benefits-area">
+                                    <img src="static/img/core-img/b2.png" alt="">
+                                    <h5>농업 기술 혁신</h5>
+                                    <p>농업에 혁신적인 기술을 도입하여, 효율적이고 지속 가능한 농업 환경을 조성하고자 합니다.</p>
+                                </div>
+                            </div>
+
+                            <!-- Single Benefits Area -->
+                            <div class="col-12 col-sm-6">
+                                <div class="single-benefits-area">
+                                    <img src="static/img/core-img/b3.png" alt="">
+                                    <h5>농업 인프라 강화</h5>
+                                    <p>농작물의 진단 서비스를 제공하여, 농업 인프라를 강화하고 농작물 질병에 대한 조기대응을 지원합니다.</p>
+                                </div>
+                            </div>
+
+                            <!-- Single Benefits Area -->
+                            <div class="col-12 col-sm-6">
+                                <div class="single-benefits-area">
+                                    <img src="static/img/core-img/b4.png" alt="">
+                                    <h5>젊은 농업인 유치</h5>
+                                    <p>고령화 사회에 대응하여, 농업에 관심 있는 젊은 세대를 유치하고 교육하여 미래의 농업인을 육성하는 것이 우리의 목표입니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="border-line"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### About Area End ##### -->
+
+    <!-- ##### Service Area Start ##### -->
+    <section class="our-services-area bg-gray section-padding-100-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Section Heading -->
+                    <div class="section-heading text-center">
+                        <h2>OUR SERVICES</h2>
+                        <p>We provide the perfect service for you.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-between">
+                <div class="col-12 col-lg-5">
+                    <div class="alazea-service-area mb-100">
+
+                        <!-- Single Service Area -->
+                        <div class="single-service-area d-flex align-items-center wow fadeInUp" data-wow-delay="100ms">
+                            <!-- Icon -->
+                            <div class="service-icon mr-30">
+                                <img src="static/img/core-img/b2.png" alt="">
+                            </div>
+                            <!-- Content -->
+                            <div class="service-content">
+                                <h5>작물 질병 진단</h5>
+                                <p>배추, 무, 파, 양배추, 토마토, 오이, 호박, 콩, 고추, 애호박까지 총 10가지의 작물의 질병을 진단하고 해결책을 마련해줍니다.</p>
+                            </div>
+                        </div>
+
+                        <!-- Single Service Area -->
+                        <div class="single-service-area d-flex align-items-center wow fadeInUp" data-wow-delay="300ms">
+                            <!-- Icon -->
+                            <div class="service-icon mr-30">
+                                <img src="static/img/core-img/b1.png" alt="">
+                            </div>
+                            <!-- Content -->
+                            <div class="service-content">
+                                <h5>재배 방법 제공</h5>
+                                <p>총 10가지의 작물에 대한 재배 환경, 관리 등 다양한 솔루션을 제공합니다.</p>
+                            </div>
+                        </div>
+
+                        <!-- Single Service Area -->
+                        <div class="single-service-area d-flex align-items-center wow fadeInUp" data-wow-delay="500ms">
+                            <!-- Icon -->
+                            <div class="service-icon mr-30">
+                                <img src="static/img/core-img/b4.png" alt="">
+                            </div>
+                            <!-- Content -->
+                            <div class="service-content">
+                                <h5>작물의 효능과 활용</h5>
+                                <p>내가 기르는 작물의 효능과 활용한 요리 등을 알 수 있습니다.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <img src="static/img/core-img/about_img1.PNG" width="100%" height="100%">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Service Area End ##### -->
+
+    <!-- ##### Testimonial Area Start ##### -->
+    <section class="testimonial-area section-padding-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Section Heading -->
+                    <div class="section-heading">
+                        <h2>Our Team</h2>
+                    </div>
+                    <div class="testimonials-slides owl-carousel">
+
+                        <!-- Single Testimonial Slide -->
+                        <div class="single-testimonial-slide">
+                            <div class="row align-items-center">
+                                <div class="col-12 col-md-6">
+                                    <div class="testimonial-thumb">
+                                        <img src="static/img/cate-img/youngjae.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="testimonial-content">
+                                        <!-- Section Heading -->
+                                        <div class="section-heading">
+                                            <h2>F4</h2>
+                                            <p>For Farmer, For Future</p>
+                                        </div>
+                                        <p>“현직 농부들과 미래의 농업을 위해 우리는 최선을 다할 것입니다. 찾아주셔서 감사합니다!”</p>
+                                        <div class="testimonial-author-info">
+                                            <h6>문영재</h6>
+                                            <p>CEO of F4</p>
+                                            <p>git: <a href=https://github.com/yjyj626262>https://github.com/yjyj626262</a></p>
+                                            <p>e-mail: yjyj626262@gmail.com</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Testimonial Slide -->
+                        <div class="single-testimonial-slide">
+                            <div class="row align-items-center">
+                                <div class="col-12 col-md-6">
+                                    <div class="testimonial-thumb">
+                                        <img src="static/img/cate-img/sora.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="testimonial-content">
+                                        <!-- Section Heading -->
+                                        <div class="section-heading">
+                                            <h2>F4</h2>
+                                            <p>For Farmer, For Future</p>
+                                        </div>
+                                        <p>“현직 농부들과 미래의 농업을 위해 우리는 최선을 다할 것입니다. 찾아주셔서 감사합니다!”</p>
+                                        <div class="testimonial-author-info">
+                                            <h6>이소라</h6>
+                                            <p>CEO of F4</p>
+                                            <p>git: <a href=https://github.com/leeesoraaa>https://github.com/leeesoraaa</a></p>
+                                            <p>e-mail: lsrlsh9981@gmail.com</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Testimonial Slide -->
+                        <div class="single-testimonial-slide">
+                            <div class="row align-items-center">
+                                <div class="col-12 col-md-6">
+                                    <div class="testimonial-thumb">
+                                        <img src="static/img/cate-img/dongmin.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="testimonial-content">
+                                        <!-- Section Heading -->
+                                        <div class="section-heading">
+                                            <h2>F4</h2>
+                                            <p>For Farmer, For Future</p>
+                                        </div>
+                                        <p>“현직 농부들과 미래의 농업을 위해 우리는 최선을 다할 것입니다. 찾아주셔서 감사합니다!”</p>
+                                        <div class="testimonial-author-info">
+                                            <h6>문동민</h6>
+                                            <p>CEO of F4</p>
+                                            <p>git: <a href=https://github.com/heshMoon>https://github.com/heshMoon</a></p>
+                                            <p>e-mail: ehdals3994@naver.com</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Testimonial Area End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area bg-img" style="background-image: url(static/img/bg-img/3.jpg);">
+        <!-- Main Footer Area -->
+        <div class="main-footer-area">
+            <div class="container">
+                <div class="row">
+
+                    <!-- Single Footer Widget -->
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="single-footer-widget">
+                            <div class="widget-title">
+                                <h5>QUICK LINK</h5>
+                            </div>
+                            <nav class="widget-nav">
+                                <ul>
+                                    <li><a href="/">Home</a></li>
+                                    <li><a href="{% url 'about' %}">About</a></li>
+                                    <li><a href="{% url 'category' %}">Category</a></li>
+                                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <!-- Single Footer Widget -->
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="single-footer-widget">
+                            <div class="widget-title">
+                                <h5>CONTACT</h5>
+                            </div>
+
+                            <div class="contact-information">
+                                <p><span>Address:</span> 서울 금천구 디지털로9길 99 스타밸리 209호</p>
+                                <p><span>Phone:</span> 02-1234-5678</p>
+                                <p><span>Email:</span> plantabc123@gmail.com</p>
+                                <p><span>Open hours:</span> Mon - Fri: 9 AM to 6 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ##### Footer Area End ##### -->
+
+    <!-- ##### All Javascript Files ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="static/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="static/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="static/js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="static/js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="static/js/active.js"></script>
+</body>
+
+</html>

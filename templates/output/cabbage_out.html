@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Alazea - Gardening &amp; Landscaping HTML Template</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="/static/img/core-img/favicon.ico">
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script>
+        function goBack() {
+          window.history.back();
+        }
+    </script>
+    <style>
+        .backButton {
+      bottom: 10px; /* 하단 여백 */
+      right: 10px; /* 우측 여백 */
+      padding: 10px;
+      background-color: #2F9D27; /* 버튼 배경색 */
+      color: #fff; /* 텍스트 색상 */
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    </style>
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-circle"></div>
+        <div class="preloader-img">
+            <img src="/static/img/core-img/leaf.png" alt="">
+        </div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+
+        <!-- ***** Top Header Area ***** -->
+        <div class="top-header-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="top-header-content d-flex align-items-center justify-content-between">
+                            <!-- Top Header Content -->
+                            <div class="top-header-meta">
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="infodeercreative@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i> <span>Email: plantabc123@gmail.com</span></a>
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="+1 234 122 122"><i class="fa fa-phone" aria-hidden="true"></i> <span>Call: 02-1234-5678</span></a>
+                            </div>
+
+                            <!-- Top Header Content -->
+                            <div class="top-header-meta d-flex">
+                                {% if request.session.sessionid != None %}
+                                <!-- Mypage -->
+                                <div class="login">
+                                    <a href="{% url 'mypage' %}?id={{request.session.sessionid}}"><i class="fa fa-user-circle-o" aria-hidden="true"></i><span>Mypage</span></a>
+                                </div>
+                                <!-- Logout -->
+                                <div class="cart">
+                                    <a href="{% url 'logout' %}"><i class="fa fa-outdent" aria-hidden="true"></i><span>Logout</span></a>
+                                </div>
+                                {% else %}
+                                <!-- Login -->
+                                <div class="login">
+                                    <a href="{% url 'login' %}"><i class="fa fa-user-circle-o" aria-hidden="true"></i><span>Login</span></a>
+                                </div>
+                                <!-- Sign up -->
+                                <div class="cart">
+                                    <a href="{% url 'register' %}"><i class="fa fa-user-o" aria-hidden="true"></i><span>Sign up</span></a>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ***** Navbar Area ***** -->
+        <div class="alazea-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="alazeaNav">
+
+                        <!-- Nav Brand -->
+                        <a href="/" class="nav-brand"><img src="/static/img/core-img/logo.png" alt=""></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Navbar Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="/">Home</a></li>
+                                    <li><a href="{% url 'about' %}">About</a></li>
+                                    <li><a href="{% url 'category' %}">Category</a>
+                                        <ul class="dropdown">
+                                            <li><a href="{% url 'cabbage' %}">양배추</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'cabbage' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'cabbage' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'cabbage' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'tomato' %}">토마토</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'tomato' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'tomato' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'tomato' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'cucumber' %}">오이</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'cucumber' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'cucumber' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'cucumber' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'pumpkin' %}">호박</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'pumpkin' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'pumpkin' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'pumpkin' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'youngpumpkin' %}">애호박</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'youngpumpkin' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'youngpumpkin' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'youngpumpkin' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'kimchi' %}">배추</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'kimchi' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'kimchi' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'kimchi' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'pepper' %}">고추</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'pepper' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'kimchi' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'pepper' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'radish' %}">무</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'radish' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'radish' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'radish' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'greenonion' %}">파</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'greenonion' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'greenonion' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'greenonion' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'bean' %}">콩</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{% url 'bean' %}#efficacy">효능</a></li>
+                                                    <li><a href="{% url 'bean' %}#cultivation">재배 방법</a></li>
+                                                    <li><a href="{% url 'bean' %}#diagnosis">질병 진단</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                                    {% if request.session.sessionid != None %}
+                                    <li><a href="{% url 'mypage' %}?id={{request.session.sessionid}}">Mypage</a></li>
+                                    {% else %}
+                                    <li><a href="{% url 'login' %}">Login</a></li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                            <!-- Navbar End -->
+                        </div>
+                    </nav>
+
+                    <!-- Search Form -->
+                    <div class="search-form">
+                        <form action="#" method="get">
+                            <input type="search" name="search" id="search" placeholder="Type keywords &amp; press enter...">
+                            <button type="submit" class="d-none"></button>
+                        </form>
+                        <!-- Close Icon -->
+                        <div class="closeIcon"><i class="fa fa-times" aria-hidden="true"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### Breadcrumb Area Start ##### -->
+    <div class="breadcrumb-area">
+        <!-- Top Breadcrumb Area -->
+        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(/static/img/cate-img/cabbage/main.jpg);">
+            <h2>RESULT</h2>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item"><a href="{% url 'cabbage' %}">Cabbage</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Result</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcrumb Area End ##### -->
+
+    <!-- ##### About Area Start ##### -->
+    <section class="about-us-area">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-12 col-lg-5">
+                    <!-- Section Heading -->
+                    <div class="section-heading">
+                        <h2>Result</h2>
+                        <p></p>
+                    </div>
+                    <!-- 이미지 -->
+                    <div class="alazea-progress-bar mb-50">
+                        {% if filepath == settings.STATICFILES_DIRS.3 %}
+                            <img src="{% static 'ex-img/' %}{{ imgname }}" alt="Cabbage Image" style="max-width: 400px; max-height: 400px;">
+                        {% elif filepath == settings.STATICFILES_DIRS.2 %}
+                            <img src="{% static 'data/' %}{{ imgname }}" alt="Cabbage Image" style="max-width: 400px; max-height: 400px;">
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    {% if good >= 80%}
+                    <div class="section-heading text-left">
+                        <h2>정상입니다!</h2>
+                        <p>회원님의 작물이 건강하게 자라고 있습니다. 지금처럼 잘 관리해주세요.</p>
+                    </div>
+                    {% elif good >= 50 %}
+                        {% if bad1 > bad2 %}
+                        <div class="section-heading text-left">
+                            <h2>정상-양배추균핵병 가능</h2>
+                            <p>정상처럼 보이나 {{bad1}}%의 확률로 양배추균핵병이 생길 가능성이 있으니 관리에 유의하세요.</p>
+                        </div>
+                        {% else %}
+                        <div class="section-heading text-left">
+                            <h2>정상-양배추무름병 가능</h2>
+                            <p>정상처럼 보이나 {{bad2}}%의 확률로 양배추무름병이 생길 가능성이 있으니 관리에 유의하세요.</p>
+                        </div>
+                        {% endif %}
+                    {% else %}
+                        {% if bad1 > bad2 %}
+                        <div class="section-heading text-left">
+                            <h2>양배추균핵병</h2>
+                            <p>{{bad1}}%의 확률로 양배추균핵병이 의심되오니 아래의 조치를 취해주세요.</p>
+                        </div>
+                        {% else %}
+                        <div class="section-heading text-left">
+                            <h2>양배추무름병</h2>
+                            <p>{{bad2}}%의 확률로 양배추무름병이 의심되오니 아래의 조치를 취해주세요.</p>
+                        </div>
+                        {% endif %}
+                    {% endif %}
+                    <div class="alazea-progress-bar mb-50">
+                        <br>
+                        <!-- 정상 확률 그래프 -->
+                        <div class="single_progress_bar">
+                            <p>정상</p>
+                            <br>
+                            <div id="bar1" class="barfiller">
+                                <div class="tipWrap">
+                                    <span class="tip"></span>
+                                </div>
+                                <span class="fill" data-percentage="{{good}}"></span>
+                            </div>
+                        </div>
+                        <br>
+                        <!-- 질병1 확률 그래프 -->
+                        <div class="single_progress_bar">
+                            <p>양배추균핵병</p>
+                            <br>
+                            <div id="bar2" class="barfiller">
+                                <div class="tipWrap">
+                                    <span class="tip"></span>
+                                </div>
+                                <span class="fill" data-percentage="{{bad1}}"></span>
+                            </div>
+                        </div>
+                        <br>
+                        <!-- 질병2 확률 그래프 -->
+                        <div class="single_progress_bar">
+                            <p>양배추무름병</p>
+                            <br>
+                            <div id="bar3" class="barfiller">
+                                <div class="tipWrap">
+                                    <span class="tip"></span>
+                                </div>
+                                <span class="fill" data-percentage="{{bad2}}"></span>
+                            </div>
+                        </div>
+                    </div>
+                    {% if good >= 80 %}
+                        <button class="backButton" onclick="goBack()">뒤로가기</button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="border-line"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### About Area End ##### -->
+    <!-- ##### 해결방안 Start ##### -->
+    <section class="our-services-area bg-gray section-padding-100-0">
+        {% if good < 80 and bad1 > bad2 %}
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-7">
+                    <!-- Section Heading -->
+                    <div class="section-heading text-left">
+                        <h2>양배추균핵병</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row align-items-center justify-content-between">
+                <div class="col-12 col-lg-7">
+                    <div class="alazea-service-area mb-100">
+                        <!-- 병징 -->
+                        <div class="cutivaion-env">
+                            <h4>병징</h4>
+                            <p>ㅇ 처음에는 맨 아래쪽 잎의 잎자루 밑에 수침상의 병반으로 나타난다. 이후 병반이 위쪽으로 진전되면서 감염부위에는 흰 균사가 자라고, 무른 상태로 썩는다.</p>
+                            <p>ㅇ 심하게 진전되면 속잎까지 썩어 들어가면서 그루 전체가 회색 내지 회갈색으로 변해 썩게 된다.</p>
+                            <p>ㅇ 후에 병든 부위에는 부정형의 검은 균핵이 형성된다.</p>
+                        </div>
+                        <!-- 발생시기 -->
+                        <div class="cultivation-char">
+                            <br>
+                            <h4>발생환경</h4>
+                            <p>ㅇ 습도가 높고, 기온이 15~25℃의 서늘한 상태에서 병발생이 심하다.</p>
+                            <p>ㅇ 병원균은 양배추 뿐 만 아니라 십자화과, 가지과, 콩과 등의 다른 많은 작물도 침해하여 균핵병을 일으킨다.</p>
+                        </div>
+                        <!-- 방제 -->
+                        <div class="cutivaion-env">
+                            <br>
+                            <h4>방제</h4>
+                            <p>1. 약재: 메트코나졸 액상수화제, 보스칼리드.피라클로스트로빈 입상수화제</p>
+                            <p>2. 병든 식물체는 그 주변의 흙과 함께 일찍 뽑아내어 땅속 깊이 파묻는다.</p>
+                            <p>3. 시설재배 포장에서는 저온다습하지 않도록 주의한다.</p>
+                            <p>4. 아주심기 후 비닐을 멀칭하여 재배하면 멀칭하지 않은 재배에 비해 병발생 억제효과가 있다.</p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-5">
+                    <div class="alazea-video-area bg-overlay mb-100">
+                        <img src="/static/img/cate-img/cabbage/cabbage_ex2video.PNG" alt="">
+                        <a href="https://www.youtube.com/watch?v=x9lDzATII50" class="video-icon">
+                            <i class="fa fa-play" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <button class="backButton" onclick="goBack()">뒤로가기</button>
+                    <br>
+                </div>
+            </div>
+        </div>
+        {% elif good < 80 and bad1 < bad2 %}
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Section Heading -->
+                    <div class="section-heading text-left">
+                        <h2>양배추무름병</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row align-items-center justify-content-between">
+                <div class="col-12 col-lg-7">
+                    <div class="alazea-service-area mb-100">
+                        <!-- 병징 -->
+                        <div class="cutivaion-env">
+                            <h4>병징</h4>
+                            <p>ㅇ 잎 밑둥과 줄기가 물러 썩는 증상으로 나타난다.</p>
+                            <p>ㅇ 병든 식물체의 지상부는 푸른 상태로 시들고, 심하게 진전되면 그루 전체가 물러 썩으며, 심한 악취가 난다.</p>
+                        </div>
+                        <!-- 발생시기 -->
+                        <div class="cultivation-char">
+                            <br>
+                            <h4>발생환경</h4>
+                            <p>ㅇ 병원균은 병든 식물체의 잔재(殘滓), 혹은 토양 속에서 존재하다가 1차전염원이 된다.</p>
+                            <p>ㅇ 병원균은 보통 곤충의 유충이 기주를 가해함과 동시에 침입하며, 또한 일반적인 상처를 통해 침입하기도 한다.</p>
+                        </div>
+                        <!-- 방제 -->
+                        <div class="cutivaion-env">
+                            <br>
+                            <h4>방제</h4>
+                            <p>1. 약재: 가스가마이신 입상수화제, 발리다마이신에이 수용제 등</p>
+                            <p>2. 벼과나 콩과 작물로 돌려짓기한다.</p>
+                            <p>3. 이 병원균은 건조에 약하므로 배수와 통풍이 잘되는 밭을 선택한다.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-5">
+                    <div class="alazea-video-area bg-overlay mb-100">
+                        <img src="/static/img/cate-img/cabbage/cabbage_ex3img.jpg" alt="">
+                        <a href="https://www.youtube.com/watch?v=9Ix4SsjU90c" class="video-icon">
+                            <i class="fa fa-play" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <button class="backButton" onclick="goBack()">뒤로가기</button>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </section>
+    <!-- ##### 해결방안 End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area bg-img" style="background-image: url(static/img/bg-img/3.jpg);">
+        <!-- Main Footer Area -->
+        <div class="main-footer-area">
+            <div class="container">
+                <div class="row">
+
+                    <!-- Single Footer Widget -->
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="single-footer-widget">
+                            <div class="widget-title">
+                                <h5>QUICK LINK</h5>
+                            </div>
+                            <nav class="widget-nav">
+                                <ul>
+                                    <li><a href="/">Home</a></li>
+                                    <li><a href="{% url 'about' %}">About</a></li>
+                                    <li><a href="{% url 'category' %}">Category</a></li>
+                                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <!-- Single Footer Widget -->
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="single-footer-widget">
+                            <div class="widget-title">
+                                <h5>CONTACT</h5>
+                            </div>
+
+                            <div class="contact-information">
+                                <p><span>Address:</span> 서울 금천구 디지털로9길 99 스타밸리 209호</p>
+                                <p><span>Phone:</span> 02-1234-5678</p>
+                                <p><span>Email:</span> plantabc123@gmail.com</p>
+                                <p><span>Open hours:</span> Mon - Fri: 9 AM to 6 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ##### Footer Area End ##### -->
+
+    <!-- ##### All Javascript Files ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="/static/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="/static/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="/static/js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="/static/js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="/static/js/active.js"></script>
+</body>
+
+</html>
